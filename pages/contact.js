@@ -67,7 +67,7 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className='flex justify-around py-16'>
+      <div className='text-xl gap-8 py-16 font-bold tracking-widest mt-8 md:mt-16 flex flex-col md:flex-row md:justify-center md:gap-40 gap-8"'>
         <button >
           <Link href="mailto:energmathewobule@gmail.com"><a className="bg-secondary px-4 md:px-6 py-2 text-gray rounded-full hover:bg-main hover:text-secondary">Send Email</a></Link>
         </button>
