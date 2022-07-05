@@ -1,29 +1,33 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import tools from '../public/calls.jpg';
 import Image from 'next/image';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-  const [htmlFormData, sethtmlFormData] = useState({
-    fName: '',
-    lName: '',
-    email: '',
-    tName: '',
-    comments: '',
-    student: '',
-    recital: '',
-  });
+  const form = useRef();
 
-  function handleChange(event) {
-    sethtmlFormData((prevhtmlFormData) => {
-      return {
-        ...prevhtmlFormData,
-        [event.target.name]: event.target.value,
-      };
-    });
-  }
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        'service_8s5dlyj',
+        'template_3n525v9',
+        form.current,
+        '-9UbBfeSkO3r7TYOp'
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
   return (
-    <div className=" bg-gray">
+    <div className=" bg-gray font-semibold">
       <div className="grid justify-center items-center md:grid-cols-2 gap-2">
         <div className="p-6 space-y-4 text-secondary text-xl md:px-20">
           <div className="flex gap-2">
@@ -84,62 +88,66 @@ export default function Contact() {
           />
         </div>
       </div>
-
-      <htmlForm className="rounded-lg shadow-xl flex flex-col p-10">
+      {/* <htmlForm
+        ref={form}
+        onSubmit={sendEmail}
+        className="rounded-lg shadow-xl flex flex-col p-10 font-semibold"
+      >
         <h1 className="text-2xl font-bold text-secondary">Send a message</h1>
 
         <label
-          htmlFor="fullname"
-          className="text-secondary font-light mt-8 text-secondary"
+          htmlFor="name"
+          className="text-secondary mt-8 text-secondary"
         >
           Full name<span className="text-main text-secondary">*</span>
         </label>
         <input
           type="text"
-          name="fullname"
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary font-light text-secondary"
+          name="name"
+          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary text-secondary"
         />
 
-        <label
-          htmlFor="email"
-          className="text-secondary font-light mt-4 text-secondary"
-        >
+        <label htmlFor="email" className="text-secondary mt-4 text-secondary">
           E-mail<span className="text-main">*</span>
         </label>
         <input
           type="email"
           name="email"
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary font-light text-secondary"
+          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary text-secondary"
         />
 
-        <label
-          htmlFor="subject"
-          className="text-secondary font-light mt-4 text-secondary"
-        >
+        <label htmlFor="subject" className="text-secondary mt-4 text-secondary">
           Subject<span className="text-main">*</span>
         </label>
         <input
           type="text"
           name="subject"
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary font-light text-secondary"
+          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary text-secondary"
         />
 
-        <label
-          htmlFor="message"
-          className="text-secondary font-light mt-4 text-secondary"
-        >
+        <label htmlFor="message" className="text-secondary mt-4 text-secondary">
           Message<span className="text-main">*</span>
         </label>
         <textarea
           name="message"
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary font-light text-secondary"
+          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary text-secondary"
         ></textarea>
         <div className="flex flex-row items-center justify-start">
-          <button className="px-10 mt-8 py-2 bg-main text-white font-light rounded-md text-xl uppercase flex flex-row items-center">
-            Send
+          <button className="px-10 f mt-8 py-2 bg-main text-white rounded-md text-xl uppercase flex flex-row items-center">
+            Let's Talk
           </button>
         </div>
-      </htmlForm>
+      </htmlForm> */}
+
+      <form ref={form} onSubmit={sendEmail}>
+        <label>Name</label>
+        <input type="text" name="user_name" />
+        <label>Email</label>
+        <input type="email" name="user_email" />
+        <label>Message</label>
+        <textarea name="message" />
+        <input type="submit" value="Send" />
+      </form>
     </div>
   );
 }
