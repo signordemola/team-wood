@@ -1,39 +1,17 @@
 import React, { useRef } from 'react';
 import tools from '../public/calls.jpg';
-import Image from 'next/image';
-import emailjs from '@emailjs/browser';
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Contact() {
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        'service_8s5dlyj',
-        'template_3n525v9',
-        form.current,
-        '-9UbBfeSkO3r7TYOp'
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
-
   return (
-    <div className=" bg-gray font-semibold">
+    <div className=" bg-gray font-semibold text-2xl">
       <div className="grid justify-center items-center md:grid-cols-2 gap-2">
-        <div className="p-6 space-y-4 text-secondary text-xl md:px-20">
-          <div className="flex gap-2">
+        <div className="p-6 space-y-4 text-secondary  md:px-20">
+          <div className="flex justify-items-center items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h- w-5"
+              className="h-6 w-6"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -42,10 +20,10 @@ export default function Contact() {
             <p>Makurdi, Nigeria</p>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex justify-items-center items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h- w-5"
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -60,10 +38,10 @@ export default function Contact() {
             <p>+234 806 961 4994</p>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex justify-items-center items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h- w-5"
+              className="h-6 w-6"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -73,8 +51,8 @@ export default function Contact() {
             <p>energmathewobule@gmail.com</p>
           </div>
 
-          <p className="italic px-8">
-            NOTE: We can travel all over the globe to give u the best of our
+          <p className="italic py-5 px-12">
+            NOTE: We can travel all over the globe to give you the best of our
             service
           </p>
         </div>
@@ -88,66 +66,20 @@ export default function Contact() {
           />
         </div>
       </div>
-      {/* <htmlForm
-        ref={form}
-        onSubmit={sendEmail}
-        className="rounded-lg shadow-xl flex flex-col p-10 font-semibold"
-      >
-        <h1 className="text-2xl font-bold text-secondary">Send a message</h1>
 
-        <label
-          htmlFor="name"
-          className="text-secondary mt-8 text-secondary"
-        >
-          Full name<span className="text-main text-secondary">*</span>
-        </label>
-        <input
-          type="text"
-          name="name"
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary text-secondary"
-        />
+      <div className='flex justify-around py-16'>
+        <button >
+          <Link href="mailto:energmathewobule@gmail.com"><a className="bg-secondary px-4 md:px-6 py-2 text-gray rounded-full hover:bg-main hover:text-secondary">Send Email</a></Link>
+        </button>
 
-        <label htmlFor="email" className="text-secondary mt-4 text-secondary">
-          E-mail<span className="text-main">*</span>
-        </label>
-        <input
-          type="email"
-          name="email"
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary text-secondary"
-        />
+        <button >
+          <Link href="https://wa.me/message/E2MRUAIFQ64LJ1"><a className="bg-secondary px-4 md:px-6 py-2 text-gray rounded-full hover:bg-main hover:text-secondary">Whatsapp</a></Link>
+        </button>
 
-        <label htmlFor="subject" className="text-secondary mt-4 text-secondary">
-          Subject<span className="text-main">*</span>
-        </label>
-        <input
-          type="text"
-          name="subject"
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary text-secondary"
-        />
-
-        <label htmlFor="message" className="text-secondary mt-4 text-secondary">
-          Message<span className="text-main">*</span>
-        </label>
-        <textarea
-          name="message"
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-secondary text-secondary"
-        ></textarea>
-        <div className="flex flex-row items-center justify-start">
-          <button className="px-10 f mt-8 py-2 bg-main text-white rounded-md text-xl uppercase flex flex-row items-center">
-            Let's Talk
-          </button>
-        </div>
-      </htmlForm> */}
-
-      <form ref={form} onSubmit={sendEmail}>
-        <label>Name</label>
-        <input type="text" name="user_name" />
-        <label>Email</label>
-        <input type="email" name="user_email" />
-        <label>Message</label>
-        <textarea name="message" />
-        <input type="submit" value="Send" />
-      </form>
+        <button >
+          <Link href="https://www.facebook.com/energy.obule"><a className="bg-secondary px-4 md:px-6 py-2 text-gray rounded-full hover:bg-main hover:text-secondary">Facebook</a></Link>
+        </button>
+      </div>
     </div>
   );
 }
